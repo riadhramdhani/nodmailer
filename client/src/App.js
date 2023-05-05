@@ -1,12 +1,17 @@
 import Form from 'react-bootstrap/Form';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from "axios"
+import io from "socket.io-client"
+const SOCKET_URL= "http://localhost:5000"
 
 
 function TextControlsExample() {
   const [email,setEmail]=useState("")
   const [subject,setSubject]=useState("")
   const [text,setText]=useState("")
+  useEffect(()=>{
+    const socket= io(SOCKET_URL)
+  })
   const sendmail=()=>{
     axios.post("http://localhost:5000/api/sendmail",{
       email:email,
